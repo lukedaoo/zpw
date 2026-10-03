@@ -52,6 +52,7 @@ function Seo({
     author,
     themeColor,
     locale,
+    card,
     robots,
     jsonLd,
 } = {}) {
@@ -74,7 +75,7 @@ function Seo({
     seoProp("og:image:alt", imageAlt);
     seoProp("og:locale", locale);
 
-    seoMeta("twitter:card", image ? SEO_CARD_LARGE : SEO_CARD_SMALL);
+    seoMeta("twitter:card", card || (image ? SEO_CARD_LARGE : SEO_CARD_SMALL));
     seoMeta("twitter:title", title);
     seoMeta("twitter:description", description);
     seoMeta("twitter:image", image);
