@@ -18,20 +18,41 @@ function renderNameComponent(parent, nameId, text, align = ALIGN.CENTER) {
 const SUBTEXT_SEP = " · ";
 const SUBTEXT_PER_ROW = 3;
 
+function cleanItems(items) {
+    return [].concat(items).filter((s) => s && String(s).trim());
+}
+
+// Flat list: wrapped every SUBTEXT_PER_ROW.
+//   ["A", "B", "C", "D"]      -> "A · B · C" / "D"
+// Any nested array: each entry is one explicit row.
+//   [["A", "B"], ["C"]]       -> "A · B" / "C"
+function subtextRows(items) {
+    const list = [].concat(items);
+    if (list.some(Array.isArray)) {
+        return list.map(cleanItems).filter((row) => row.length);
+    }
+
+    const flat = cleanItems(list);
+    const rows = [];
+    for (let i = 0; i < flat.length; i += SUBTEXT_PER_ROW) {
+        rows.push(flat.slice(i, i + SUBTEXT_PER_ROW));
+    }
+    return rows;
+}
+
 function createSubtextComponent(
     id = "site-subtext",
     items = [],
     align = ALIGN.CENTER
 ) {
-    const list = [].concat(items).filter(Boolean);
-    if (!list.length) return;
+    const rows = subtextRows(items);
+    if (!rows.length) return;
 
     const side = getValidAlign(align);
     const e = div(`subtext text-align-${side}`);
     if (id) e.id = id;
 
-    for (let i = 0; i < list.length; i += SUBTEXT_PER_ROW) {
-        const row = list.slice(i, i + SUBTEXT_PER_ROW);
+    for (const row of rows) {
         e.appendChild(p(row.join(SUBTEXT_SEP)));
     }
 
