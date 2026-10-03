@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>seo.js</title>
+
+        <link rel="stylesheet" href="../seo.min.css" />
+        <style>
+            body {
+                max-width: 48rem;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+
+            pre {
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+        </style>
+
+        <script defer src="../seo.min.js"></script>
+        <script defer>
+            const PAGES = [
+                {
+                    title: "Page A",
+                    description: "First description.",
+                    url: "https://example.com/a",
+                    image: "https://example.com/a.png",
+                    imageAlt: "Image A",
+                    siteName: "Example",
+                    jsonLd: {
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        name: "Page A",
+                    },
+                },
+                {
+                    title: "Page B",
+                    description: "Second description.",
+                    url: "https://example.com/b",
+                    siteName: "Example",
+                },
+            ];
+
+            const FAVICONS = [
+                { text: "A", bg: "#111111", fg: "#4ade80" },
+                { text: "X", bg: "#111111", fg: "#02ffcc" },
+            ];
+
+            let step = 0;
+
+            function showHead() {
+                const lines = [...document.head.children]
+                    .filter((n) => /^(META|LINK|SCRIPT)$/.test(n.tagName))
+                    .filter((n) => !n.src && !/stylesheet/.test(n.rel))
+                    .map((n) => n.outerHTML.slice(0, 160));
+                document.getElementById("out").textContent = lines.join("\n");
+            }
+
+            function apply() {
+                Seo(PAGES[step % PAGES.length]);
+                Favicon(FAVICONS[step % FAVICONS.length]);
+                showHead();
+                step++;
+            }
+
+            addEventListener("DOMContentLoaded", () => {
+                document.getElementById("next").onclick = apply;
+                apply();
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>seo.js</h1>
+        <p>
+            Each click calls <code>Seo()</code> and <code>Favicon()</code>
+            with the next values. Tags are updated in place, never duplicated.
+            The tab title and icon change too.
+        </p>
+        <button id="next" type="button">Next page</button>
+        <pre id="out"></pre>
+    </body>
+</html>

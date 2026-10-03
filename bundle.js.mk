@@ -6,7 +6,7 @@ include modules.mk
 POSTS := $(wildcard example/posts/*.md)
 SLUGS := $(basename $(notdir $(POSTS)))
 STATIC := content.js writeup.js index.js index.css blogs-index.js
-STANDALONE := blogs resume updates
+STANDALONE := blogs resume updates seo
 
 .DEFAULT_GOAL := all
 .PHONY: all clean
