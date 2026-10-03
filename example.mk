@@ -12,7 +12,7 @@ all: $(SLUGS:%=example/blogs/%.html)
 # Posts sit at example/blogs/, two levels below the repo root.
 example/blogs/%.html: example/posts/%.md build-artifact/post.html
 	@mkdir -p $(@D)
-	$(PANDOC) $(blogs_CSS:%=-V style=../../%) $(blogs_JS:%=-V script=../../%) $< -o $@
+	$(PANDOC) $(PANDOC_SEO) $(blogs_CSS:%=-V style=../../%) $(blogs_JS:%=-V script=../../%) $< -o $@
 
 index: example/blogs-index.js
 

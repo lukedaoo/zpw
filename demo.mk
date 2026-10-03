@@ -11,11 +11,11 @@ STATIC := content.js writeup.js index.js index.css blogs-index.js
 .PHONY: all clean
 
 all: $(OUT)/zpw.min.js $(OUT)/zpw.min.css $(OUT)/index.html \
-	$(STATIC:%=$(OUT)/%) $(SLUGS:%=$(OUT)/blogs/%.html)
+	$(STATIC:%=$(OUT)/%) $(SLUGS:%=$(OUT)/blogs/%.html) $(SITEMAP) $(ROBOTS)
 
 $(OUT)/blogs/%.html: example/posts/%.md build-artifact/post.html $(OUT)/zpw.min.js $(OUT)/zpw.min.css
 	@mkdir -p $(@D)
-	$(PANDOC) -V style=../zpw.min.css -V script=../zpw.min.js $< -o $@
+	$(PANDOC) $(PANDOC_SEO) -V style=../zpw.min.css -V script=../zpw.min.js $< -o $@
 
 $(OUT)/index.html: build-artifact/bundle.html
 	@mkdir -p $(@D)

@@ -4,6 +4,46 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>/$pagetitle$/</title>
+        $if(summary)$
+        <meta name="description" content="$summary$" />
+        $endif$ $for(author)$
+        <meta name="author" content="$author$" />
+        $endfor$ $if(favicon)$
+        <link rel="icon" href="$favicon$" />
+        $endif$ $if(siteurl)$
+        <link rel="canonical" href="$siteurl$blogs/$slug$.html" />
+        <meta property="og:url" content="$siteurl$blogs/$slug$.html" />
+        $endif$
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="$pagetitle$" />
+        $if(summary)$
+        <meta property="og:description" content="$summary$" />
+        <meta name="twitter:description" content="$summary$" />
+        $endif$ $if(date)$
+        <meta property="article:published_time" content="$date$" />
+        $endif$ $if(image)$
+        <meta property="og:image" content="$image$" />
+        <meta name="twitter:image" content="$image$" />
+        $if(imagealt)$
+        <meta property="og:image:alt" content="$imagealt$" />
+        <meta name="twitter:image:alt" content="$imagealt$" />
+        $endif$
+        <meta name="twitter:card" content="summary_large_image" />
+        $else$
+        <meta name="twitter:card" content="summary" />
+        $endif$
+        <meta name="twitter:title" content="$pagetitle$" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": "$pagetitle$"$if(date)$,
+                "datePublished": "$date$"$endif$$if(summary)$,
+                "description": "$summary$"$endif$$if(author)$,
+                "author": [$for(author)${ "@type": "Person", "name": "$author$" }$sep$, $endfor$]$endif$$if(siteurl)$,
+                "url": "$siteurl$blogs/$slug$.html"$endif$
+            }
+        </script>
 
         $for(style)$
         <link rel="stylesheet" href="$style$" />

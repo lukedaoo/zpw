@@ -25,6 +25,8 @@ function App({
     routes = [],
     footer = {},
     width = LAYOUT.COMPACT,
+    seo = null,
+    favicon = null,
 } = {}) {
     const byPath = new Map(routes.map((r) => [normalizePath(r.path), r]));
     const siteName = header.name || "";
@@ -45,9 +47,11 @@ function App({
     const show = (path) => {
         const route = byPath.get(path);
         body.replaceChildren(route ? route.render() : notFoundBody());
-        document.title = route?.title
-            ? `${route.title} · ${siteName}`
-            : siteName;
+        const title = route?.title ? `${route.title} · ${siteName}` : siteName;
+        document.title = title;
+        if (seo) {
+            Seo({ ...seo, ...route?.seo, title: route?.seo?.title || title });
+        }
         markActive(path);
     };
 
@@ -74,6 +78,10 @@ function App({
         ALIGN.RIGHT
     );
     renderGoToTopButton(document.body, "scroll-to-top", ALIGN.RIGHT);
+
+    if (favicon) {
+        Favicon(favicon);
+    }
 
     show(currentRoute());
 

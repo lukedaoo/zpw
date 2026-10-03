@@ -8,13 +8,14 @@ SLUGS := $(basename $(notdir $(POSTS)))
 STATIC := content.js writeup.js index.js index.css blogs-index.js
 STANDALONE := blogs resume updates
 
+.DEFAULT_GOAL := all
 .PHONY: all clean
 
-all: modules $(SLUGS:%=$(OUT)/blogs/%.html) $(OUT)/index.html $(STATIC:%=$(OUT)/%) $(STANDALONE:%=$(OUT)/standalone/%.js.html)
+all: modules $(SLUGS:%=$(OUT)/blogs/%.html) $(OUT)/index.html $(STATIC:%=$(OUT)/%) $(STANDALONE:%=$(OUT)/standalone/%.js.html) $(SITEMAP) $(ROBOTS)
 
 $(OUT)/blogs/%.html: example/posts/%.md build-artifact/post.html $(OUT)/blogs.min.js $(OUT)/blogs.min.css
 	@mkdir -p $(@D)
-	$(PANDOC) -V style=../blogs.min.css -V script=../blogs.min.js $< -o $@
+	$(PANDOC) $(PANDOC_SEO) -V style=../blogs.min.css -V script=../blogs.min.js $< -o $@
 
 $(OUT)/index.html: build-artifact/bundle.html
 	@mkdir -p $(@D)
