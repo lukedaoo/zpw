@@ -3,8 +3,9 @@ set -euo pipefail
 
 BUMP="${1:-patch}"
 
-last=$(git tag --list 'v*' --sort=-v:refname | head -n1)
-last="${last:-v0.0.0}"
+VERSION_FILE="$(dirname "$0")/../VERSION"
+
+last=$(tr -d '[:space:]' < "$VERSION_FILE")
 IFS=. read -r major minor patch <<< "${last#v}"
 
 case "$BUMP" in
@@ -21,6 +22,8 @@ if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
     exit 1
 fi
 
-git commit --allow-empty -q -m "chore: release $next"
+echo "$next" > "$VERSION_FILE"
+git add "$VERSION_FILE"
+git commit -q -m "chore: release $next"
 git tag -a "$next" -m "$next"
 echo "$last -> $next (not pushed: git push origin HEAD $next)"

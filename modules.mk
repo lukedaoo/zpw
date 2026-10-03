@@ -6,12 +6,12 @@ MODULES_MK := 1
 ESBUILD ?= npx --yes esbuild@0.25
 PANDOC ?= pandoc --from markdown --to html5 --standalone --wrap=none --template=build-artifact/post.html
 OUT ?= dist
-# Optional, with trailing slash: enables canonical/og:url on posts.
+VERSION := $(strip $(file < VERSION))
+
 # make SITE_URL=https://example.com/
 SITE_URL ?=
 PANDOC_SEO = -V slug=$* $(SITE_URL:%=-V siteurl=%)
 
-# Only built when SITE_URL is set: urls must be absolute.
 SITEMAP := $(if $(SITE_URL),$(OUT)/sitemap.xml)
 SITEMAP_POSTS := $(wildcard example/posts/*.md)
 
@@ -83,11 +83,13 @@ modules: $(foreach m,$(MODULES),$(OUT)/$(m).min.js $(OUT)/$(m).min.css)
 define MODULE_RULE
 $$(OUT)/$(1).min.js: $$($(1)_JS)
 	@mkdir -p $$(@D)
-	cat $$^ | $$(ESBUILD) --minify --loader=js > $$@
+	cat $$^ | $$(ESBUILD) --minify --loader=js --banner='/*! zpw $$(VERSION) */' > $$@
+	cp $$@ $$(OUT)/$(1)-$$(VERSION).min.js
 
 $$(OUT)/$(1).min.css: $$($(1)_CSS)
 	@mkdir -p $$(@D)
-	cat $$^ | $$(ESBUILD) --minify --loader=css > $$@
+	cat $$^ | $$(ESBUILD) --minify --loader=css --banner='/*! zpw $$(VERSION) */' > $$@
+	cp $$@ $$(OUT)/$(1)-$$(VERSION).min.css
 endef
 $(foreach m,$(MODULES),$(eval $(call MODULE_RULE,$(m))))
 
