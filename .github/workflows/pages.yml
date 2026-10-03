@@ -30,7 +30,7 @@ jobs:
           sudo apt-get install -y pandoc
 
       - name: Build
-        run: make
+        run: make -f bundle.js.mk
 
       - name: Check build output
         run: |
