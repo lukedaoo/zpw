@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wiki 3: header (standalone)</title>
+
+        <link rel="stylesheet" href="../dist/header.min.css" />
+        <script defer src="../dist/header.min.js"></script>
+        <script defer>
+            addEventListener("DOMContentLoaded", () => {
+                document.body.append(
+                    Header({
+                        name: "Loc Dao (LD)",
+                        subtext: [
+                            ["Software Engineer", "Seattle"],
+                            ["me@example.com"],
+                        ],
+                        links: [
+                            { label: "home", href: "#/" },
+                            { label: "github", href: "https://github.com/you" },
+                        ],
+                    }),
+                    Header({
+                        name: "Flat subtext, 4 items wrap at 3",
+                        subtext: ["one", "two", "three", "four"],
+                    }),
+                    Header({
+                        name: "Empty subtext adds nothing",
+                        subtext: [" "],
+                    })
+                );
+            });
+        </script>
+    </head>
+
+    <body></body>
+</html>

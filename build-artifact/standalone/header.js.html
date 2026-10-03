@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>header.js</title>
+
+        <link rel="stylesheet" href="../header.min.css" />
+        <style>
+            body {
+                max-width: 48rem;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+        </style>
+
+        <script defer src="../header.min.js"></script>
+        <script defer src="../content.js"></script>
+        <script defer>
+            addEventListener("DOMContentLoaded", () => {
+                document.body.append(Header(HEADER_CONTENT));
+            });
+        </script>
+    </head>
+
+    <body></body>
+</html>

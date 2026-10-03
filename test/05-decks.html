@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wiki 7: decks</title>
+
+        <link rel="stylesheet" href="../dist/deck.min.css" />
+        <style>
+            body {
+                max-width: 48rem;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+        </style>
+        <script defer src="../dist/deck.min.js"></script>
+        <script defer src="decks/intro.js"></script>
+        <script defer>
+            addEventListener("DOMContentLoaded", () => {
+                document.body.append(Decks());
+            });
+        </script>
+    </head>
+
+    <body>
+        <p>
+            Try: click the deck, arrow keys, Home/End, f (fullscreen), Esc. Deep
+            link: <code>05-decks.html?deck=intro&amp;s=3</code>.
+        </p>
+    </body>
+</html>

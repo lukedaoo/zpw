@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wiki 1: whole site (bundle)</title>
+
+        <link rel="stylesheet" href="../dist/zpw.min.css" />
+        <script defer src="../dist/zpw.min.js"></script>
+        <script defer>
+            const HEADER_CONTENT = {
+                name: "Loc Dao (LD)",
+                subtext: [["Software Engineer", "Seattle"], ["me@example.com"]],
+                links: [
+                    { label: "home", href: "#/" },
+                    { label: "updates", href: "#/updates" },
+                ],
+            };
+            const FOOTER_CONTENT = { text: "Copyright by LD" };
+            const RESUME_CONTENT = {
+                hello: { title: "Hello", greeting: "Hi, I like coding." },
+            };
+            const UPDATES_CONTENT = {
+                title: "Updates",
+                groups: [
+                    {
+                        title: "2026",
+                        list: [
+                            {
+                                date: "2026-10-01",
+                                title: "Hello",
+                                lines: ["World"],
+                            },
+                        ],
+                    },
+                ],
+            };
+
+            addEventListener("DOMContentLoaded", () => {
+                App({
+                    header: HEADER_CONTENT,
+                    footer: FOOTER_CONTENT,
+                    routes: [
+                        { path: "/", render: () => Resume(RESUME_CONTENT) },
+                        {
+                            path: "/updates",
+                            title: "Updates",
+                            render: () => Updates(UPDATES_CONTENT),
+                        },
+                    ],
+                });
+            });
+        </script>
+    </head>
+
+    <body></body>
+</html>

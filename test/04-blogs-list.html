@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wiki 6: blog list</title>
+
+        <link rel="stylesheet" href="../dist/blogs.min.css" />
+        <style>
+            body {
+                max-width: 48rem;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+        </style>
+        <script defer src="../dist/blogs.min.js"></script>
+        <script defer>
+            const BLOGS_INDEX = [
+                {
+                    slug: "hello-world",
+                    title: "Hello World",
+                    date: "2026-10-01",
+                    category: "articles",
+                    summary: "Short text for the list.",
+                    url: "../dist/blogs/hello-world.html",
+                },
+                {
+                    slug: "fast-file-search",
+                    title: "Fast File Search",
+                    date: "2026-09-15",
+                    category: "articles",
+                    summary: "Notes on searching a large file tree.",
+                    url: "../dist/blogs/fast-file-search.html",
+                },
+            ];
+
+            addEventListener("DOMContentLoaded", () => {
+                document.body.append(Blogs(BLOGS_INDEX));
+            });
+        </script>
+    </head>
+
+    <body>
+        <p>
+            Open a post from the list: it should show Date, Author, the code
+            dropdown, and the style panel.
+        </p>
+    </body>
+</html>

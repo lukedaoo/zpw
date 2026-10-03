@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wiki 8: seo and favicon</title>
+
+        <link rel="stylesheet" href="../dist/seo.min.css" />
+        <script defer src="../dist/seo.min.js"></script>
+        <script defer>
+            function showHead() {
+                const lines = [...document.head.children]
+                    .filter((n) => /^(META|LINK|SCRIPT)$/.test(n.tagName))
+                    .filter((n) => !n.src && !/stylesheet/.test(n.rel))
+                    .map((n) => n.outerHTML.slice(0, 140));
+                document.getElementById("out").textContent = lines.join("\n");
+            }
+
+            addEventListener("DOMContentLoaded", () => {
+                Seo({
+                    title: "My page",
+                    description: "Hello.",
+                    url: "https://example.com/",
+                    siteName: "Example",
+                    image: "https://example.com/card.png",
+                    imageAlt: "Card",
+                });
+                Favicon({ text: "LD", bg: "#111111", fg: "#4ade80" });
+                showHead();
+
+                document.getElementById("rocket").onclick = () => {
+                    Favicon({ emoji: "🚀" }); // lol
+                    showHead();
+                };
+            });
+        </script>
+    </head>
+
+    <body>
+        <p>The tab title and icon should change. Tags are listed below.</p>
+        <button id="rocket" type="button">Favicon: rocket emoji</button>
+        <pre
+            id="out"
+            style="white-space: pre-wrap; word-break: break-all"
+        ></pre>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wiki 4-5: resume and updates</title>
+
+        <link rel="stylesheet" href="../dist/zpw.min.css" />
+        <style>
+            body {
+                max-width: 48rem;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+        </style>
+        <script defer src="../dist/zpw.min.js"></script>
+        <script defer>
+            const RESUME_CONTENT = {
+                hello: { title: "Hello", greeting: "Hi, I like coding." },
+                work: {
+                    title: "Work",
+                    companies: [
+                        {
+                            name: "Company ABC",
+                            date: { start: "Jan 2024", end: "Present" },
+                            roles: [
+                                {
+                                    title: "Software Engineer",
+                                    date: { start: "Jan 2024", end: "Present" },
+                                    lines: ["Built core platform services."],
+                                    links: {
+                                        code: "https://github.com/x/y",
+                                        preview: [
+                                            "../example/assets/deck-sample.svg",
+                                        ],
+                                    },
+                                    techs: ["React", "Node.js"],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                projects: {
+                    title: "Projects",
+                    domains: [
+                        {
+                            title: "Web",
+                            projects: [
+                                {
+                                    name: "My site",
+                                    lines: ["A personal website."],
+                                    links: { live: "https://example.com" },
+                                    techs: ["HTML", "CSS", "JS"],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            };
+
+            const UPDATES_CONTENT = {
+                title: "Updates",
+                groups: [
+                    {
+                        title: "2026",
+                        list: [
+                            {
+                                date: "2026-10-01",
+                                title: "Hello",
+                                lines: ["World"],
+                            },
+                        ],
+                    },
+                ],
+            };
+
+            addEventListener("DOMContentLoaded", () => {
+                document.body.append(
+                    Resume(RESUME_CONTENT),
+                    Updates(UPDATES_CONTENT)
+                );
+            });
+        </script>
+    </head>
+
+    <body></body>
+</html>
