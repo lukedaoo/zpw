@@ -4,6 +4,10 @@
 }
 
 #site-name {
+    margin-bottom: 0.5rem;
+}
+
+#site-subtext {
     margin-bottom: 2rem;
 }
 

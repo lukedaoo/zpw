@@ -1,12 +1,12 @@
 .PHONY: all demo example clean
 
-all:
+all: clean
 	$(MAKE) -f bundle.js.mk all
 
-demo:
+demo: clean
 	$(MAKE) -f demo.mk
 
-example:
+example: clean
 	$(MAKE) -f example.mk all
 
 clean:

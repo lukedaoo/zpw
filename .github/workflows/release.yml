@@ -20,10 +20,17 @@ jobs:
       - name: Build the bundle
         run: make -f bundle.js.mk modules
 
+      - name: Version the bundle names
+        run: |
+          mkdir dist/release
+          for f in dist/*.min.js dist/*.min.css; do
+            base=$(basename "$f")
+            cp "$f" "dist/release/${base%%.min.*}-${GITHUB_REF_NAME}.min.${base##*.min.}"
+          done
+
       - name: Create release with the module bundles
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/*.min.js
-            dist/*.min.css
+            dist/release/*
           generate_release_notes: true

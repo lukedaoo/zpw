@@ -1,5 +1,6 @@
 const HEADER_CONTENT = {
     name: "Loc Dao (LD)",
+    subtext: ["Software Engineer", "Seattle"],
 
     links: [
         { label: "home", href: "#/" },
