@@ -5,13 +5,13 @@ include modules.mk
 
 POSTS := $(wildcard example/posts/*.md)
 SLUGS := $(basename $(notdir $(POSTS)))
-STATIC := content.js writeup.js index.js index.css blogs-index.js
-STANDALONE := blogs resume updates seo
+STATIC := content.js writeup.js index.js index.css blogs-index.js assets/deck-sample.svg
+STANDALONE := blogs resume updates seo deck
 
 .DEFAULT_GOAL := all
 .PHONY: all clean
 
-all: modules $(SLUGS:%=$(OUT)/blogs/%.html) $(OUT)/index.html $(STATIC:%=$(OUT)/%) $(STANDALONE:%=$(OUT)/standalone/%.js.html) $(SITEMAP) $(ROBOTS)
+all: modules $(SLUGS:%=$(OUT)/blogs/%.html) $(OUT)/index.html $(STATIC:%=$(OUT)/%) $(STANDALONE:%=$(OUT)/standalone/%.js.html) $(OUT)/standalone/assets/deck-sample.svg $(OUT)/decks.js $(SITEMAP) $(ROBOTS)
 
 $(OUT)/blogs/%.html: example/posts/%.md build-artifact/post.html $(OUT)/blogs.min.js $(OUT)/blogs.min.css
 	@mkdir -p $(@D)
@@ -26,6 +26,10 @@ $(STANDALONE:%=$(OUT)/standalone/%.js.html): $(OUT)/standalone/%.js.html: build-
 	cp $< $@
 
 $(STATIC:%=$(OUT)/%): $(OUT)/%: example/%
+	@mkdir -p $(@D)
+	cp $< $@
+
+$(OUT)/standalone/assets/deck-sample.svg: example/assets/deck-sample.svg
 	@mkdir -p $(@D)
 	cp $< $@
 

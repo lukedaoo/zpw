@@ -1,0 +1,95 @@
+.deck-player {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    overscroll-behavior: contain;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.deck-stage {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 5vw, 4rem);
+    overflow: auto;
+}
+
+.deck-slide {
+    width: min(1100px, 100%);
+}
+
+.deck-slide-title {
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.deck-slide-text {
+    font-size: clamp(1.2rem, 2.8vw, 2rem);
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.deck-slide-bullets {
+    font-size: clamp(1.2rem, 2.8vw, 2rem);
+    line-height: 1.5;
+    padding-left: 1.5em;
+}
+
+.deck-slide-bullets li {
+    margin: 0.4em 0;
+}
+
+.deck-slide-code {
+    font-size: clamp(0.9rem, 2vw, 1.4rem);
+    background: var(--code-bg, var(--card-bg));
+    color: var(--code-fg, inherit);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius8);
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.deck-slide-image {
+    display: block;
+    max-width: 100%;
+    max-height: 60vh;
+    margin: 1rem auto 0;
+    object-fit: contain;
+    border-radius: var(--border-radius4);
+}
+
+.deck-progress {
+    height: 3px;
+    background: var(--border-color);
+}
+
+.deck-progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.15s ease;
+}
+
+.deck-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary);
+}
+
+.deck-bar .code-theme-control {
+    position: static;
+}
+
+.deck-title {
+    margin-right: auto;
+    color: var(--text-secondary);
+}

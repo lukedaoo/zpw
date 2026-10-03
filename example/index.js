@@ -20,5 +20,10 @@ App({
             title: "Blogs",
             render: () => Blogs(BLOGS_INDEX),
         },
+        {
+            path: "/decks",
+            title: "Decks",
+            render: () => Decks(),
+        },
     ],
 });

@@ -5,13 +5,13 @@ include modules.mk
 
 POSTS := $(wildcard example/posts/*.md)
 SLUGS := $(basename $(notdir $(POSTS)))
-STATIC := content.js writeup.js index.js index.css blogs-index.js
+STATIC := content.js writeup.js index.js index.css blogs-index.js assets/deck-sample.svg
 
 .DEFAULT_GOAL := all
 .PHONY: all clean
 
 all: $(OUT)/zpw.min.js $(OUT)/zpw.min.css $(OUT)/index.html \
-	$(STATIC:%=$(OUT)/%) $(SLUGS:%=$(OUT)/blogs/%.html) $(SITEMAP) $(ROBOTS)
+	$(STATIC:%=$(OUT)/%) $(SLUGS:%=$(OUT)/blogs/%.html) $(OUT)/decks.js $(SITEMAP) $(ROBOTS)
 
 $(OUT)/blogs/%.html: example/posts/%.md build-artifact/post.html $(OUT)/zpw.min.js $(OUT)/zpw.min.css
 	@mkdir -p $(@D)

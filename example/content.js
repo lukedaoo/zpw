@@ -9,6 +9,7 @@ const HEADER_CONTENT = {
         { label: "linkedin", href: "https://www.linkedin.com/" },
         { label: "updates", href: "#/updates" },
         { label: "blogs", href: "#/blogs" },
+        { label: "decks", href: "#/decks" },
     ],
 };
 

@@ -57,6 +57,11 @@ updates_CSS := $(CORE)/base.css $(CORE)/ui.css
 # seo: head tags + favicon (JS only; base.css keeps the bundle pair uniform)
 seo_JS := $(CORE)/base.js src/seo.js/seo.js
 seo_CSS := $(CORE)/base.css
+# deck: list of decks + fullscreen slide player (decks/<name>.js are data)
+deck_JS := $(CORE)/base.js $(CORE)/style-control-panel.js $(CORE)/ui.js $(CORE)/list.js \
+	src/blogs.js/blogs-code-colortheme.js src/deck.js/deck-highlight.js src/deck.js/deck.js
+deck_CSS := $(CORE)/base.css $(CORE)/style-control-panel.css $(CORE)/ui.css \
+	src/blogs.js/blogs-code-colortheme.css src/deck.js/deck.css
 # blogs: index list + post page
 blogs_JS := $(CORE)/base.js $(CORE)/container.js $(CORE)/style-control-panel.js \
 	$(CORE)/go-to-top.js $(CORE)/ui.js $(CORE)/list.js \
@@ -69,12 +74,18 @@ zpw_JS := $(CORE)/base.js $(CORE)/name.js $(CORE)/nav.js $(CORE)/container.js \
 	$(CORE)/style-control-panel.js $(CORE)/go-to-top.js $(CORE)/list.js $(CORE)/ui.js \
 	src/header.js/header.js src/footer.js/footer.js src/resume.js/resume.js \
 	src/updates.js/updates.js src/blogs.js/blogs-code-colortheme.js \
-	src/blogs.js/blogs.js src/seo.js/seo.js src/app.js/app.js
+	src/blogs.js/blogs.js src/deck.js/deck-highlight.js src/deck.js/deck.js src/seo.js/seo.js src/app.js/app.js
 zpw_CSS := $(CORE)/base.css $(CORE)/container.css $(CORE)/name.css $(CORE)/nav.css \
 	$(CORE)/style-control-panel.css $(CORE)/go-to-top.css $(CORE)/ui.css src/blogs.js/blogs.css \
-	src/blogs.js/blogs-code-colortheme.css
+	src/blogs.js/blogs-code-colortheme.css src/deck.js/deck.css
 
-MODULES := header footer resume updates blogs seo zpw
+MODULES := header footer resume updates blogs deck seo zpw
+
+# Deck data files, concatenated: example/decks/*.js -> $(OUT)/decks.js
+DECK_FILES := $(wildcard example/decks/*.js)
+$(OUT)/decks.js: $(DECK_FILES)
+	@mkdir -p $(@D)
+	cat $^ > $@
 
 .PHONY: modules modules-clean
 

@@ -26,11 +26,11 @@ function currentTheme() {
 }
 
 function updateThemeButton() {
-    const b = document.querySelector(".btn-theme");
-    if (!b) return;
     const t = currentTheme();
-    b.textContent = t === "light" ? "Light" : "Dark";
-    b.setAttribute("aria-label", "Theme: " + t + ". Click to switch.");
+    document.querySelectorAll(".btn-theme").forEach((b) => {
+        b.textContent = t === "light" ? "Light" : "Dark";
+        b.setAttribute("aria-label", "Theme: " + t + ". Click to switch.");
+    });
 }
 
 function toggleTheme() {
