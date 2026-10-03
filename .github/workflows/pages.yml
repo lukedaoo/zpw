@@ -30,19 +30,19 @@ jobs:
           sudo apt-get install -y pandoc
 
       - name: Build
-        run: make -f bundle.js.mk
+        run: make demo
 
       - name: Check build output
         run: |
-          test -f dist/index.html
-          test -f dist/zpw.min.js
-          test -f dist/zpw.min.css
-          ls dist/blogs/*.html
+          test -f dist-github/index.html
+          test -f dist-github/zpw.min.js
+          test -f dist-github/zpw.min.css
+          ls dist-github/blogs/*.html
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist-github
 
   deploy:
     needs: build
