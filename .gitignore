@@ -1,5 +1,6 @@
 dist/
 example/blogs/
 dist-github/
+dist-release/
 
 TODO.md

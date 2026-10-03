@@ -6,7 +6,7 @@ include modules.mk
 POSTS := $(wildcard example/posts/*.md)
 SLUGS := $(basename $(notdir $(POSTS)))
 STATIC := content.js writeup.js index.js index.css blogs-index.js assets/deck-sample.svg
-STANDALONE := blogs resume updates seo deck
+STANDALONE := header footer blogs resume updates seo deck
 
 .DEFAULT_GOAL := all
 .PHONY: all clean

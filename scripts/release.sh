@@ -3,7 +3,8 @@ set -euo pipefail
 
 BUMP="${1:-patch}"
 
-VERSION_FILE="$(dirname "$0")/../VERSION"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+VERSION_FILE="$ROOT/VERSION"
 
 last=$(tr -d '[:space:]' < "$VERSION_FILE")
 IFS=. read -r major minor patch <<< "${last#v}"
@@ -23,7 +24,14 @@ if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
 fi
 
 echo "$next" > "$VERSION_FILE"
+
+if ! make -C "$ROOT" release > /dev/null; then
+    git checkout -- "$VERSION_FILE"
+    echo "make release failed, version not bumped" >&2
+    exit 1
+fi
+
 git add "$VERSION_FILE"
 git commit -q -m "chore: release $next"
 git tag -a "$next" -m "$next"
-echo "$last -> $next (not pushed: git push origin HEAD $next)"
+echo "$last -> $next, built in dist-release/ (not pushed: git push origin HEAD $next)"
