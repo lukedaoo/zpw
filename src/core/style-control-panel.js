@@ -1,6 +1,5 @@
 const ACCENTS = ["green", "purple", "white"];
 
-// Storage can throw (blocked cookies, some private modes): never let it break the page.
 function storageGet(key) {
     try {
         return localStorage.getItem(key);
@@ -76,7 +75,7 @@ function createStyleControlPanel(
         panel.appendChild(b);
     });
 
-    const c = button("Contrast");
+    const c = button("Contrast", "btn contrast");
     c.onclick = () =>
         setContrast(
             !document.documentElement.hasAttribute("data-contrast"),
