@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>$pagetitle$</title>
+
+        $for(style)$
+        <link rel="stylesheet" href="$style$" />
+        $endfor$ $for(script)$
+        <script defer src="$script$"></script>
+        $endfor$
+    </head>
+
+    <body>
+        <nav class="blog-nav nav-list text-align-left">
+            <span class="nav-bracket">[ </span
+            ><a class="nav-link" href="../index.html#/blogs">back</a
+            ><span class="nav-bracket"> ]</span>
+        </nav>
+        <article class="blog-post">
+            <header>
+                <h1 class="blog-title">$title$</h1>
+                $if(subtitle)$
+                <p class="blog-subtitle">$subtitle$</p>
+                $endif$ $if(date)$
+                <p class="blog-date">$date$</p>
+                $endif$
+            </header>
+            $body$
+        </article>
+        <script>
+            addEventListener("DOMContentLoaded", () => BlogPost());
+        </script>
+    </body>
+</html>

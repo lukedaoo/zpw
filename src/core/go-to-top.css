@@ -1,0 +1,21 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 1rem;
+}
+
+.scroll-to-top.align-left {
+    left: 1rem;
+}
+
+.scroll-to-top.align-right {
+    right: 1rem;
+}
+
+.scroll-to-top.align-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scroll-to-top[hidden] {
+    display: none;
+}

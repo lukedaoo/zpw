@@ -1,0 +1,27 @@
+#site-header {
+    padding: 4rem 1rem 0;
+    margin-bottom: 2rem;
+}
+
+#site-name {
+    margin-bottom: 2rem;
+}
+
+#site-footer {
+    padding: 4rem 1rem 0;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 520px) {
+    #site-header {
+        padding-top: 4.5rem;
+    }
+
+    #site-name {
+        font-size: 1.6rem;
+    }
+}
+
+.fold-item > .fold-item {
+    margin-left: 1rem;
+}
