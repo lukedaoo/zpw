@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>updates.js</title>
+
+        <link rel="stylesheet" href="../updates.min.css" />
+        <style>
+            body {
+                max-width: 48rem;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+        </style>
+
+        <script defer src="../updates.min.js"></script>
+        <script defer src="../writeup.js"></script>
+        <script defer>
+            addEventListener("DOMContentLoaded", () => {
+                document.body.append(Updates(UPDATES_CONTENT));
+            });
+        </script>
+    </head>
+
+    <body></body>
+</html>
