@@ -1,0 +1,119 @@
+[data-code-theme="monokai"] {
+    --code-bg: #272822;
+    --code-fg: #f8f8f2;
+    --code-kw: #f92672;
+    --code-type: #66d9ef;
+    --code-num: #ae81ff;
+    --code-str: #e6db74;
+    --code-com: #75715e;
+}
+
+[data-code-theme="nord"] {
+    --code-bg: #2e3440;
+    --code-fg: #d8dee9;
+    --code-kw: #81a1c1;
+    --code-type: #8fbcbb;
+    --code-num: #b48ead;
+    --code-str: #a3be8c;
+    --code-com: #616e88;
+}
+
+[data-code-theme="gruber-darker"] {
+    --code-bg: #181818;
+    --code-fg: #e4e4ef;
+    --code-kw: #ffdd33;
+    --code-type: #ffdd33;
+    --code-num: #9e95c7;
+    --code-str: #73c936;
+    --code-com: #cc8c3c;
+}
+
+[data-code-theme="github-dark"] {
+    --code-bg: #0d1117;
+    --code-fg: #e6edf3;
+    --code-kw: #ff7b72;
+    --code-type: #ffa657;
+    --code-num: #79c0ff;
+    --code-str: #a5d6ff;
+    --code-com: #8b949e;
+}
+
+[data-code-theme="github-light"] {
+    --code-bg: #f6f8fa;
+    --code-fg: #1f2328;
+    --code-kw: #cf222e;
+    --code-type: #953800;
+    --code-num: #0550ae;
+    --code-str: #0a3069;
+    --code-com: #6e7781;
+}
+
+[data-code-theme="solarized"] {
+    --code-bg: #fdf6e3;
+    --code-fg: #657b83;
+    --code-kw: #859900;
+    --code-type: #b58900;
+    --code-num: #d33682;
+    --code-str: #2aa198;
+    --code-com: #93a1a1;
+}
+
+.blog-post pre.sourceCode {
+    background-color: var(--code-bg, var(--card-bg));
+    color: var(--code-fg, inherit);
+}
+
+.sourceCode .kw,
+.sourceCode .cf,
+.sourceCode .pp {
+    color: var(--code-kw, var(--accent));
+    font-weight: 600;
+}
+
+.sourceCode .dt,
+.sourceCode .bu,
+.sourceCode .cn {
+    color: var(--code-type, var(--accent-purple));
+}
+
+.sourceCode .dv,
+.sourceCode .bn,
+.sourceCode .fl {
+    color: var(--code-num, var(--accent-purple));
+}
+
+.sourceCode .st,
+.sourceCode .ch,
+.sourceCode .vs,
+.sourceCode .ss,
+.sourceCode .sc {
+    color: var(--code-str, var(--accent-green));
+}
+
+.sourceCode .co,
+.sourceCode .do,
+.sourceCode .an,
+.sourceCode .cv,
+.sourceCode .in {
+    color: var(--code-com, var(--text-secondary));
+    font-style: italic;
+}
+
+.code-theme-control {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.code-theme-select {
+    font: inherit;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius4);
+    padding: 0.2rem 0.4rem;
+}

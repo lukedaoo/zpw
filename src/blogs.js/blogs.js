@@ -79,4 +79,5 @@ function BlogPost() {
         ALIGN.RIGHT
     );
     renderGoToTopButton(document.body, "scroll-to-top", ALIGN.RIGHT);
+    renderCodeThemeControl(document.body);
 }

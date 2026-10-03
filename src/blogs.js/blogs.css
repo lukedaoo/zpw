@@ -13,9 +13,14 @@
 }
 
 .blog-subtitle,
+.blog-author,
 .blog-date {
     margin-top: 0.5rem;
     color: var(--text-secondary);
+}
+
+.blog-meta-value {
+    color: var(--text-primary);
 }
 
 .blog-post h2,

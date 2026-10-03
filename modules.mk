@@ -20,16 +20,20 @@ updates_JS := $(CORE)/base.js $(CORE)/ui.js $(CORE)/list.js src/updates.js/updat
 updates_CSS := $(CORE)/base.css $(CORE)/ui.css
 # blogs: index list + post page
 blogs_JS := $(CORE)/base.js $(CORE)/container.js $(CORE)/style-control-panel.js \
-	$(CORE)/go-to-top.js $(CORE)/ui.js $(CORE)/list.js src/blogs.js/blogs.js
+	$(CORE)/go-to-top.js $(CORE)/ui.js $(CORE)/list.js \
+	src/blogs.js/blogs-code-colortheme.js src/blogs.js/blogs.js
 blogs_CSS := $(CORE)/base.css $(CORE)/container.css $(CORE)/nav.css \
-	$(CORE)/style-control-panel.css $(CORE)/go-to-top.css $(CORE)/ui.css src/blogs.js/blogs.css
+	$(CORE)/style-control-panel.css $(CORE)/go-to-top.css $(CORE)/ui.css src/blogs.js/blogs.css \
+	src/blogs.js/blogs-code-colortheme.css
 # zpw: everything (app)
 zpw_JS := $(CORE)/base.js $(CORE)/name.js $(CORE)/nav.js $(CORE)/container.js \
 	$(CORE)/style-control-panel.js $(CORE)/go-to-top.js $(CORE)/list.js $(CORE)/ui.js \
 	src/header.js/header.js src/footer.js/footer.js src/resume.js/resume.js \
-	src/updates.js/updates.js src/blogs.js/blogs.js src/app.js/app.js
+	src/updates.js/updates.js src/blogs.js/blogs-code-colortheme.js \
+	src/blogs.js/blogs.js src/app.js/app.js
 zpw_CSS := $(CORE)/base.css $(CORE)/container.css $(CORE)/name.css $(CORE)/nav.css \
-	$(CORE)/style-control-panel.css $(CORE)/go-to-top.css $(CORE)/ui.css src/blogs.js/blogs.css
+	$(CORE)/style-control-panel.css $(CORE)/go-to-top.css $(CORE)/ui.css src/blogs.js/blogs.css \
+	src/blogs.js/blogs-code-colortheme.css
 
 MODULES := header footer resume updates blogs zpw
 

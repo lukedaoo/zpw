@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>$pagetitle$</title>
+        <title>/$pagetitle$/</title>
 
         $for(style)$
         <link rel="stylesheet" href="$style$" />
@@ -24,7 +24,16 @@
                 $if(subtitle)$
                 <p class="blog-subtitle">$subtitle$</p>
                 $endif$ $if(date)$
-                <p class="blog-date">$date$</p>
+                <p class="blog-date">
+                    Date: <span class="blog-meta-value">$date$</span>
+                </p>
+                $endif$ $if(author)$
+                <p class="blog-author">
+                    Author:
+                    <span class="blog-meta-value"
+                        >$for(author)$$author$$sep$, $endfor$</span
+                    >
+                </p>
                 $endif$
             </header>
             $body$
