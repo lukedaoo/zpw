@@ -2,7 +2,7 @@ const INTRO_DECK = {
     id: "intro",
     title: "Intro to zpw",
     date: "2026-10-03",
-    summary: "What zpw is and how the modules fit together.",
+    summary: ["What zpw is and how the modules fit together.", "second line"],
     category: "talks",
     slides: [
         {

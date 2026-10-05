@@ -10,11 +10,12 @@ function postCategory(post) {
 }
 
 function blogItem({ slug, url, title, date, summary } = {}) {
+    const lines = Array.isArray(summary) ? summary : summary ? [summary] : [];
     return {
         title,
         date: date ? String(date) : undefined,
         url: url || `blogs/${slug}.html`,
-        lines: summary ? [summary] : [],
+        lines,
     };
 }
 

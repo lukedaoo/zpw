@@ -79,31 +79,46 @@ function renderSlide(slide = {}) {
 }
 
 function deckItem({ id, title, date, summary }) {
+    const lines = Array.isArray(summary) ? summary : summary ? [summary] : [];
+
     return {
         title,
-        date: date ? String(date) : undefined,
+        date: date?.toString(),
         url: `?${DECK_PARAM}=${encodeURIComponent(id)}`,
-        lines: summary ? [summary] : [],
+        lines,
     };
 }
 
 function deckGroups(decks) {
-    const byCategory = new Map();
+    const groups = new Map();
 
     for (const deck of decks) {
-        const key = deck.category || DECK_UNGROUPED;
-        if (!byCategory.has(key)) {
-            byCategory.set(key, []);
+        const category = deck.category || DECK_UNGROUPED;
+
+        if (!groups.has(category)) {
+            groups.set(category, []);
         }
-        byCategory.get(key).push(deck);
+
+        groups.get(category).push(deck);
     }
 
-    return [...byCategory].map(([title, list]) => {
-        list.sort((a, b) =>
-            String(b.date ?? "").localeCompare(String(a.date ?? ""))
-        );
-        return { title, list: list.map(deckItem) };
-    });
+    const result = [];
+
+    for (const [title, decksInGroup] of groups) {
+        decksInGroup.sort((a, b) => {
+            const dateA = String(a.date || "");
+            const dateB = String(b.date || "");
+
+            return dateB.localeCompare(dateA);
+        });
+
+        result.push({
+            title,
+            list: decksInGroup.map(deckItem),
+        });
+    }
+
+    return result;
 }
 
 // List of every registered deck. Clicking one opens the player.
