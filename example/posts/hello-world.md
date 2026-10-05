@@ -3,7 +3,7 @@ title: Hello World
 subtitle: A first post, to check that the build works.
 author: Loc Dao
 date: 2026-10-01
-category: articles
+category: Articles
 summary: Testing the blog pipeline with a short article.
 ---
 

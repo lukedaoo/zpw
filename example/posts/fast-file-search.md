@@ -2,7 +2,7 @@
 title: Fast File Search
 subtitle: The code for this article can be found at [ffs.c](https://example.com/ffs.c), or on [github](https://github.com/lukedaoo).
 date: 2026-09-15
-category: articles
+category: Articles
 summary: Notes on searching a large file tree quickly.
 ---
 

@@ -1,6 +1,6 @@
 const BLOGS_INDEX = [
     {
-        category: "articles",
+        category: "Articles",
         date: "2026-09-15",
         slug: "fast-file-search",
         subtitle:
@@ -11,7 +11,7 @@ const BLOGS_INDEX = [
     },
     {
         author: "Loc Dao",
-        category: "articles",
+        category: "Articles",
         date: "2026-10-01",
         slug: "hello-world",
         subtitle: "A first post, to check that the build works.",

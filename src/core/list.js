@@ -11,6 +11,28 @@ function dateText(date) {
     return typeof date === "string" ? date : dateRange(date);
 }
 
+const LIST_UNGROUPED = "Other";
+
+function listGroups(items = [], toItem = (it) => it) {
+    const map = new Map();
+
+    for (const it of items) {
+        const category = it.category || LIST_UNGROUPED;
+        if (!map.has(category)) {
+            map.set(category, []);
+        }
+        map.get(category).push(it);
+    }
+
+    const groups = [];
+    for (const [title, group] of map) {
+        group.sort((a, b) => dateText(b.date).localeCompare(dateText(a.date)));
+        groups.push({ title, list: group.map(toItem) });
+    }
+
+    return groups;
+}
+
 function listLinks(links, preview) {
     return codeLive({
         code: links?.code,

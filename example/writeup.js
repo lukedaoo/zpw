@@ -7,7 +7,7 @@ const UPDATES_CONTENT = {
                 {
                     date: "2026-10-01",
                     title: "Hello",
-                    url: null,
+                    url: "http://example.com",
                     lines: ["World"],
                 },
             ],

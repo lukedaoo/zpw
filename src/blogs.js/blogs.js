@@ -1,14 +1,5 @@
 const CLASS_NAME_BLOGSJS_COMPONENT = "z-blogsjs";
 
-const BLOG_CATEGORIES = Object.freeze([
-    { key: "paper", title: "Papers" },
-    { key: "articles", title: "Articles" },
-]);
-
-function postCategory(post) {
-    return post.category || "other";
-}
-
 function blogItem({ slug, url, title, date, summary } = {}) {
     const lines = Array.isArray(summary) ? summary : summary ? [summary] : [];
     return {
@@ -19,47 +10,13 @@ function blogItem({ slug, url, title, date, summary } = {}) {
     };
 }
 
-function blogGroups(posts = []) {
-    const map = {};
-
-    for (const post of posts) {
-        const cat = postCategory(post);
-        if (!map[cat]) map[cat] = [];
-        map[cat].push(post);
-    }
-
-    const categories = [...BLOG_CATEGORIES];
-    for (const cat in map) {
-        if (!categories.some((c) => c.key === cat)) {
-            categories.push({ key: cat, title: cat });
-        }
-    }
-
-    const groups = [];
-    for (const { key, title } of categories) {
-        if (!map[key]?.length) continue;
-
-        map[key].sort((a, b) =>
-            String(b.date ?? "").localeCompare(String(a.date ?? ""))
-        );
-
-        const list = [];
-        for (const item of map[key]) {
-            list.push(blogItem(item));
-        }
-
-        groups.push({ title, list });
-    }
-
-    return groups;
-}
-
-// posts: [{ slug, title, date, category, summary }]
+// posts: [{ slug, title, date, category?, summary }]
+// category is free text; each distinct value becomes a group.
 function Blogs(posts) {
     if (!posts) return;
 
     return List(
-        { title: "Blogs", groups: blogGroups(posts) },
+        { title: "Blogs", groups: listGroups(posts, blogItem) },
         {
             id: "site-blogs",
             cls: `blogs-container ${CLASS_NAME_BLOGSJS_COMPONENT}`,
